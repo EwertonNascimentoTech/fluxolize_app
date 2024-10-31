@@ -1,0 +1,12 @@
+.row > * {
+    padding-top: calc(var(--bs-gutter-x)* 0.5);
+    padding-bottom: calc(var(--bs-gutter-x)* 0.5);
+}
+
+
+.btn-pro {
+    position: absolute;
+    bottom: 10px; /* Ajusta a distância do fundo */
+    right: 10px;  /* Ajusta a distância da direita */
+    padding: 10px 20px;
+}

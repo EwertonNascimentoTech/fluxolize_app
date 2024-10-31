@@ -1,0 +1,122 @@
+.offcanvas-custom {
+    width: 50%; /* Ajuste aqui a largura do offcanvas */
+}
+
+.offcanvas-header {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 15px;
+    /*border-radius: 10px 10px 0 0;*/
+}
+
+.offcanvas-header h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.offcanvas-header img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f0f4f8;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.chat-message.ai {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.chat-message .message-text {
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    /*max-width: 100%;*/
+}
+
+.chat-message.user .message-text {
+    background-color: #3b82f6;
+    color: #fff;
+    max-width: 100%;
+}
+
+.chat-message.ai .message-text {
+    background-color: #e5e7eb;
+    color: #333;
+    max-width: 100%;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o textarea */
+#userMessage {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: transparent;
+    resize: none; /* Impede que o usuário redimensione o textarea manualmente */
+    max-height: 150px; /* Limita a altura máxima */
+    overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* Mantém as quebras de linha do usuário */
+}
+
+#sendMessage {
+    background-color: #3b82f6;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sendMessage:hover {
+    background-color: #1d4ed8;
+}
+
+#sendMessage i {
+    font-size: 1.2rem;
+}
