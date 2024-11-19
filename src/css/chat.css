@@ -3,8 +3,10 @@
 }
 
 .offcanvas-header {
-    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-    color: white;
+    /*background: linear-gradient(45deg, #3b82f6, #1d4ed8);*/
+    /*background: linear-gradient(45deg, #f0a443, #f06d45);*/
+    background: #313a46;
+    color: #f06d45;
     padding: 15px;
     /*border-radius: 10px 10px 0 0;*/
 }
@@ -17,7 +19,7 @@
 }
 
 .offcanvas-header img {
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     margin-right: 10px;
     width: 40px;
     height: 40px;
@@ -60,7 +62,8 @@
 }
 
 .chat-message.user .message-text {
-    background-color: #3b82f6;
+    /*background-color: #3b82f6;*/
+    background: linear-gradient(45deg, #f0a443, #f06d45);
     color: #fff;
     max-width: 100%;
 }
@@ -100,7 +103,8 @@
 }
 
 #sendMessage {
-    background-color: #3b82f6;
+    /*background-color: #3b82f6;*/
+    background: linear-gradient(45deg, #f0a443, #f06d45);
     border: none;
     color: white;
     border-radius: 50%;
@@ -119,4 +123,31 @@
 
 #sendMessage i {
     font-size: 1.2rem;
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.choice-button {
+    background-color: #ffffff;
+    color: #6d6d6d;
+    border: 0.2px solid #d3d3d3; /* Adiciona uma borda bem fina */
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s;
+}
+
+.choice-button:hover {
+    background-color: #e0e0e0; /* cor de fundo ao passar o mouse */
+}
+
+.btn_principal{
+    background: linear-gradient(45deg, #f0a443, #f06d45);
+    border-color: #f06d45;
 }

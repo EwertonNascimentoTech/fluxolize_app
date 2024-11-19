@@ -15,15 +15,22 @@ document.addEventListener("DOMContentLoaded", function() {
                                             </a>
                                         </li>
                                         <li class="nav-item dropdown">
+                                            <a class="nav-link arrow-none" href="#"
+                                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
+                                                <i class="uil-dashboard mr-1"></i>Portfólio
+                                            </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layouts"
                                                role="button" data-toggle="dropdown" aria-haspopup="true"
                                                aria-expanded="false">
-                                                <i class="uil-window mr-1"></i>Layouts
+                                                <i class="uil-window mr-1"></i>Configurações
                                                 <div class="arrow-down"></div>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="topnav-layouts">
-                                                <a href="layouts-vertical.html" class="dropdown-item">Vertical</a>
-                                                <a href="layouts-detached.html" class="dropdown-item">Detached</a>
+                                                <a href="layouts-vertical.html" class="dropdown-item">Usuários</a>
+                                                <a href="layouts-detached.html" class="dropdown-item">Planos</a>
                                             </div>
                                         </li>
                                     </ul>

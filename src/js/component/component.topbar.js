@@ -20,49 +20,38 @@ document.addEventListener("DOMContentLoaded", function() {
                                id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image"
+                                        <img src="../../../public/user.png" alt="user-image"
                                              class="rounded-circle">
                                     </span>
                                 <span>
-                                        <span class="account-user-name">Dominic Keller</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">Ewerton Nascimento</span>
+                                        <span class="account-position">Analista de Processos</span>
                                     </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
                                  aria-labelledby="topbar-userdrop">
                                 <!-- item-->
                                 <div class=" dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                    <h6 class="text-overflow m-0">Seja bem-vindo !</h6>
                                 </div>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="mdi mdi-account-circle mr-1"></i>
-                                    <span>My Account</span>
+                                    <span>Minha Conta</span>
                                 </a>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-edit mr-1"></i>
-                                    <span>Settings</span>
-                                </a>
-
+                       
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="mdi mdi-lifebuoy mr-1"></i>
-                                    <span>Support</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-lock-outline mr-1"></i>
-                                    <span>Lock Screen</span>
+                                    <span>Documentação</span>
                                 </a>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout mr-1"></i>
-                                    <span>Logout</span>
+                                    <span>Sair</span>
                                 </a>
 
                             </div>
@@ -83,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Renderiza o componente de navegação
     function renderTopNav() {
-        const app = document.getElementById('app');
-        app.innerHTML = TopNavComponent();
+        const topbar = document.getElementById('topbar');
+        topbar.innerHTML = TopNavComponent();
     }
 
     renderTopNav(); // Chama a função de renderização

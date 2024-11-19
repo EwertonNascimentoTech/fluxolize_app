@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/20100524/MODEL.xsd http://activiti.org/bpmn http://activiti.org/bpmn/bpmn.xsd http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI.xsd http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC.xsd http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI.xsd http://camunda.org/schema/1.0/bpmn http://camunda.org/schema/1.0/bpmn.xsd" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://bpmn.io)" exporterVersion="6.0.0">
+    <process id="Process_1" name="Solicitar Veículos" isExecutable="true">
+        <startEvent id="StartEvent_1" name="Iniciar Solicitação" />
+        <userTask id="UserTask_1" name="Solicitação" activiti:assignee="Funcionário">
+            <documentation>O funcionário preenche um formulário online com os detalhes da solicitação, incluindo data, hora, local de partida, destino, tipo de veículo e justificativa.</documentation>
+        </userTask>
+        <userTask id="UserTask_2" name="Verificação de Aprovação" activiti:assignee="Gestor">
+            <documentation>O gestor responsável analisa a solicitação, verificando a justificativa, a necessidade do veículo e a disponibilidade do mesmo.</documentation>
+        </userTask>
+        <gateway id="Gateway_1" name="Aprovação/Reprovação" gatewayDirection="Diverging">
+        </gateway>
+        <sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="UserTask_1" />
+        <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="UserTask_2" />
+        <sequenceFlow id="SequenceFlow_3" sourceRef="UserTask_2" targetRef="Gateway_1" />
+        <userTask id="UserTask_3" name="Aprovação" activiti:assignee="Gestor">
+            <documentation>Se aprovada, o gestor libera a solicitação.</documentation>
+        </userTask>
+        <sequenceFlow id="SequenceFlow_4" sourceRef="Gateway_1" targetRef="UserTask_3" name="Aprovado" />
+        <userTask id="UserTask_4" name="Reprovação" activiti:assignee="Gestor">
+            <documentation>Caso reprovada, o gestor informa o motivo da reprovação ao funcionário.</documentation>
+        </userTask>
+        <sequenceFlow id="SequenceFlow_5" sourceRef="Gateway_1" targetRef="UserTask_4" name="Reprovado" />
+        <serviceTask id="ServiceTask_1" name="Agendamento" activiti:delegateExpression="${agendamentoService}">
+            <documentation>O sistema agendamento automaticamente o veículo solicitado, considerando a disponibilidade e as regras de negócio.</documentation>
+        </serviceTask>
+        <sequenceFlow id="SequenceFlow_6" sourceRef="UserTask_3" targetRef="ServiceTask_1" />
+        <sequenceFlow id="SequenceFlow_7" sourceRef="ServiceTask_1" targetRef="UserTask_5" />
+        <userTask id="UserTask_5" name="Liberação do Veículo" activiti:assignee="Central de Agendamento">
+            <documentation>O funcionário recebe a confirmação do agendamento e as informações sobre o veículo (placa, modelo, local de retirada).</documentation>
+        </userTask>
+        <userTask id="UserTask_6" name="Devolução do Veículo" activiti:assignee="Funcionário">
+            <documentation>O funcionário devolve o veículo no local e hora agendados, realizando a devolução formalmente no sistema.</documentation>
+        </userTask>
+        <sequenceFlow id="SequenceFlow_8" sourceRef="UserTask_5" targetRef="UserTask_6" />
+        <endEvent id="EndEvent_1" name="Fim da Solicitação" />
+        <sequenceFlow id="SequenceFlow_9" sourceRef="UserTask_6" targetRef="EndEvent_1" />
+    </process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+        <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+            <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1" x="102" y="102" width="36" height="36">
+                <dc:Bounds x="102" y="102" width="36" height="36" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_1_di" bpmnElement="UserTask_1" x="182" y="82" width="100" height="80">
+                <dc:Bounds x="182" y="82" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_2_di" bpmnElement="UserTask_2" x="322" y="82" width="100" height="80">
+                <dc:Bounds x="322" y="82" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Gateway_1_di" bpmnElement="Gateway_1" x="462" y="102" width="50" height="50">
+                <dc:Bounds x="462" y="102" width="50" height="50" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_3_di" bpmnElement="UserTask_3" x="552" y="82" width="100" height="80">
+                <dc:Bounds x="552" y="82" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_4_di" bpmnElement="UserTask_4" x="552" y="182" width="100" height="80">
+                <dc:Bounds x="552" y="182" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="ServiceTask_1_di" bpmnElement="ServiceTask_1" x="692" y="102" width="100" height="80">
+                <dc:Bounds x="692" y="102" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_5_di" bpmnElement="UserTask_5" x="832" y="102" width="100" height="80">
+                <dc:Bounds x="832" y="102" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="UserTask_6_di" bpmnElement="UserTask_6" x="972" y="102" width="100" height="80">
+                <dc:Bounds x="972" y="102" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1" x="1112" y="102" width="36" height="36">
+                <dc:Bounds x="1112" y="102" width="36" height="36" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="SequenceFlow_1_di" bpmnElement="SequenceFlow_1">
+                <di:waypoint x="138" y="118" />
+                <di:waypoint x="182" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_2_di" bpmnElement="SequenceFlow_2">
+                <di:waypoint x="282" y="118" />
+                <di:waypoint x="322" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_3_di" bpmnElement="SequenceFlow_3">
+                <di:waypoint x="422" y="118" />
+                <di:waypoint x="462" y="127" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_4_di" bpmnElement="SequenceFlow_4">
+                <di:waypoint x="512" y="127" />
+                <di:waypoint x="552" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_5_di" bpmnElement="SequenceFlow_5">
+                <di:waypoint x="512" y="127" />
+                <di:waypoint x="552" y="218" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_6_di" bpmnElement="SequenceFlow_6">
+                <di:waypoint x="652" y="118" />
+                <di:waypoint x="692" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_7_di" bpmnElement="SequenceFlow_7">
+                <di:waypoint x="792" y="118" />
+                <di:waypoint x="832" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_8_di" bpmnElement="SequenceFlow_8">
+                <di:waypoint x="932" y="118" />
+                <di:waypoint x="972" y="118" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="SequenceFlow_9_di" bpmnElement="SequenceFlow_9">
+                <di:waypoint x="1072" y="118" />
+                <di:waypoint x="1112" y="118" />
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>

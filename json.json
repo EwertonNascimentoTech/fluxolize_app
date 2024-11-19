@@ -1,0 +1,486 @@
+process_data": {
+"name": "Solicitação de Veículo",
+"description": "Atender solicitações de veículos para uso por funcionários da empresa, garantindo a disponibilidade de veículos adequados para as necessidades de cada solicitação, de forma eficiente e segura.",
+"lanes": [
+{
+"name": "Funcionário",
+"tasks": [
+{
+"name": "Solicitar Veículo",
+"description": "O funcionário preenche um formulário online com os dados da solicitação, incluindo data, hora, local de partida e destino, tipo de veículo necessário e justificativa.",
+"inputs": [
+"Formulário de solicitação preenchido com os dados da solicitação."
+],
+"outputs": [
+"Solicitação de veículo registrada no sistema."
+],
+"responsible": "Funcionário",
+"involved": []
+},
+{
+"name": "Retirar Veículo",
+"description": "O funcionário retira o veículo no local e horário agendados, apresentando o documento de identificação e a confirmação de reserva.",
+"inputs": [
+"Confirmação de reserva",
+"Documento de identificação do funcionário"
+],
+"outputs": [
+"Veículo liberado para o funcionário."
+],
+"responsible": "Funcionário",
+"involved": []
+},
+{
+"name": "Utilizar Veículo",
+"description": "O funcionário utiliza o veículo para o fim solicitado, seguindo as normas de segurança e conduta da empresa.",
+"inputs": [
+"Veículo liberado."
+],
+"outputs": [
+"Veículo utilizado para o fim solicitado."
+],
+"responsible": "Funcionário",
+"involved": []
+},
+{
+"name": "Devolver Veículo",
+"description": "O funcionário devolve o veículo no local e horário agendados, realizando a vistoria do veículo com o responsável pela frota.",
+"inputs": [
+"Veículo utilizado."
+],
+"outputs": [
+"Veículo devolvido, com vistoria realizada."
+],
+"responsible": "Funcionário",
+"involved": [
+"Responsável pela Frota"
+]
+},
+{
+"name": "Cancelar Solicitação",
+"description": "O funcionário poderá cancelar a solicitação de veículo a qualquer momento, antes da retirada do veículo.",
+"inputs": [
+"Solicitação de veículo."
+],
+"outputs": [
+"Solicitação de veículo cancelada."
+],
+"responsible": "Funcionário",
+"involved": []
+}
+]
+},
+{
+"name": "Sistema",
+"tasks": [
+{
+"name": "Analisar Solicitação",
+"description": "O sistema automaticamente valida a solicitação, verificando se o funcionário possui autorização para solicitar veículo e se há disponibilidade do veículo solicitado na data e hora desejadas. Em caso de aprovação, a solicitação é encaminhada para o gestor do funcionário para aprovação final.",
+"inputs": [
+"Solicitação de veículo registrada no sistema."
+],
+"outputs": [
+"Solicitação aprovada ou rejeitada, com justificativa."
+],
+"responsible": "Sistema",
+"involved": [
+"Gestor do Funcionário"
+]
+},
+{
+"name": "Gerar Confirmação de Reserva",
+"description": "Após a aprovação do gestor, o sistema gera uma confirmação de reserva, informando o funcionário sobre o veículo reservado, data e hora da reserva, local de retirada e entrega do veículo, e instruções para a retirada do veículo.",
+"inputs": [
+"Solicitação aprovada."
+],
+"outputs": [
+"Confirmação de reserva enviada ao funcionário por e-mail."
+],
+"responsible": "Sistema",
+"involved": [
+"Funcionário"
+]
+},
+{
+"name": "Registrar Devolução",
+"description": "O sistema registra a devolução do veículo e encerra a solicitação, liberando o veículo para novas solicitações.",
+"inputs": [
+"Veículo devolvido."
+],
+"outputs": [
+"Solicitação encerrada no sistema."
+],
+"responsible": "Sistema",
+"involved": []
+}
+]
+},
+{
+"name": "Gestor do Funcionário",
+"tasks": [
+{
+"name": "Aprovar Solicitação",
+"description": "O gestor do funcionário analisa a solicitação e aprova ou rejeita a mesma.",
+"inputs": [
+"Solicitação aprovada pelo sistema."
+],
+"outputs": [
+"Solicitação aprovada ou rejeitada pelo gestor."
+],
+"responsible": "Gestor do Funcionário",
+"involved": []
+},
+{
+"name": "Aprovar Solicitação Interestadual",
+"description": "Para viagens interestaduais, a solicitação deverá ser aprovada pelo gestor do funcionário e pelo responsável pela área de segurança, que irá verificar a documentação do veículo e autorizar a viagem.",
+"inputs": [
+"Solicitação de viagem interestadual."
+],
+"outputs": [
+"Solicitação de viagem interestadual aprovada ou rejeitada."
+],
+"responsible": "Gestor do Funcionário",
+"involved": [
+"Responsável pela Área de Segurança"
+]
+}
+]
+},
+{
+"name": "Responsável pela Frota",
+"tasks": [
+{
+"name": "Realizar Vistoria",
+"description": "O responsável pela frota realiza a vistoria do veículo após a devolução pelo funcionário.",
+"inputs": [
+"Veículo devolvido pelo funcionário."
+],
+"outputs": [
+"Vistoria do veículo realizada."
+],
+"responsible": "Responsável pela Frota",
+"involved": [
+"Funcionário"
+]
+},
+{
+"name": "Analisar Solicitação Especial",
+"description": "Em caso de necessidade de veículo especial (como van, caminhão ou veículo adaptado), a solicitação será analisada por um responsável específico da área de frota, que irá verificar a disponibilidade do veículo e autorizar a reserva.",
+"inputs": [
+"Solicitação de veículo especial."
+],
+"outputs": [
+"Solicitação de veículo especial aprovada ou rejeitada."
+],
+"responsible": "Responsável pela Frota",
+"involved": []
+}
+]
+},
+{
+"name": "Responsável pela Área de Segurança",
+"tasks": [
+{
+"name": "Autorizar Viagem Interestadual",
+"description": "O responsável pela área de segurança verifica a documentação do veículo e autoriza a viagem interestadual.",
+"inputs": [
+"Solicitação de viagem interestadual aprovada pelo gestor."
+],
+"outputs": [
+"Viagem interestadual autorizada ou rejeitada."
+],
+"responsible": "Responsável pela Área de Segurança",
+"involved": []
+}
+]
+}
+],
+"connections": [
+{
+"from": "Solicitar Veículo",
+"to": "Analisar Solicitação"
+},
+{
+"from": "Analisar Solicitação",
+"to": "Aprovar Solicitação",
+"condition": "Solicitação aprovada pelo sistema"
+},
+{
+"from": "Aprovar Solicitação",
+"to": "Gerar Confirmação de Reserva",
+"condition": "Solicitação aprovada pelo gestor"
+},
+{
+"from": "Gerar Confirmação de Reserva",
+"to": "Retirar Veículo"
+},
+{
+"from": "Retirar Veículo",
+"to": "Utilizar Veículo"
+},
+{
+"from": "Utilizar Veículo",
+"to": "Devolver Veículo"
+},
+{
+"from": "Devolver Veículo",
+"to": "Realizar Vistoria"
+},
+{
+"from": "Realizar Vistoria",
+"to": "Registrar Devolução"
+},
+{
+"from": "Solicitar Veículo",
+"to": "Analisar Solicitação Especial",
+"condition": "Solicitação de veículo especial"
+},
+{
+"from": "Aprovar Solicitação",
+"to": "Aprovar Solicitação Interestadual",
+"condition": "Solicitação de viagem interestadual"
+},
+{
+"from": "Aprovar Solicitação Interestadual",
+"to": "Autorizar Viagem Interestadual",
+"condition": "Solicitação de viagem interestadual aprovada pelo gestor"
+},
+{
+"from": "Solicitar Veículo",
+"to": "Cancelar Solicitação",
+"condition": "Solicitação de veículo"
+}
+],
+"business_rules": [
+{
+"rule": "O funcionário deve ter autorização para solicitar veículo, de acordo com o cargo e função.",
+"task": "Analisar Solicitação"
+},
+{
+"rule": "A solicitação de veículo deve ser realizada com antecedência mínima de 24 horas.",
+"task": "Analisar Solicitação"
+},
+{
+"rule": "O veículo deve ser utilizado apenas para fins profissionais.",
+"task": "Utilizar Veículo"
+},
+{
+"rule": "O funcionário é responsável por qualquer dano ao veículo durante a utilização.",
+"task": "Utilizar Veículo"
+},
+{
+"rule": "O veículo deve ser devolvido no local e horário agendados.",
+"task": "Devolver Veículo"
+},
+{
+"rule": "O funcionário deve seguir as normas de segurança e conduta da empresa durante a utilização do veículo.",
+"task": "Utilizar Veículo"
+}
+],
+"performance_indicators": [
+{
+"name": "Taxa de Aprovação de Solicitações",
+"description": "Percentual de solicitações aprovadas em relação ao total de solicitações."
+},
+{
+"name": "Tempo Médio de Aprovação de Solicitações",
+"description": "Tempo médio entre a data de submissão da solicitação e a data de aprovação."
+},
+{
+"name": "Taxa de Utilização da Frota",
+"description": "Percentual de tempo em que os veículos estão em uso."
+},
+{
+"name": "Taxa de Ocorrências com Veículos",
+"description": "Número de ocorrências (acidentes, danos, etc.) com os veículos da frota."
+}
+],
+"risks": [
+{
+"name": "Disponibilidade de Veículos",
+"description": "Falta de veículos disponíveis para atender às solicitações.",
+"mitigation": "Manter uma frota de veículos adequadamente dimensionada, com diferentes tipos de veículos para atender as diversas necessidades."
+},
+{
+"name": "Aprovação de Solicitações Inadequadas",
+"description": "Aprovação de solicitações que não atendem aos critérios da empresa.",
+"mitigation": "Implementar um sistema de aprovação com validações e controles para garantir que as solicitações sejam adequadas."
+},
+{
+"name": "Utilização Inadequada dos Veículos",
+"description": "Utilização dos veículos para fins não profissionais ou em desacordo com as normas da empresa.",
+"mitigation": "Implementar um sistema de monitoramento e controle da utilização dos veículos, com penalidades para o uso inadequado."
+},
+{
+"name": "Danos aos Veículos",
+"description": "Danos aos veículos durante a utilização.",
+"mitigation": "Implementar um sistema de vistoria dos veículos antes e depois da utilização, com responsabilização do funcionário por danos causados."
+},
+{
+"name": "Segurança dos Funcionários",
+"description": "Acidentes com os veículos.",
+"mitigation": "Implementar um programa de treinamento de segurança para os funcionários, com foco na condução defensiva e no uso correto dos veículos."
+}
+],
+"documents": [
+{
+"name": "Formulário de Solicitação de Veículo",
+"description": "Formulário preenchido pelo funcionário com os dados da solicitação."
+},
+{
+"name": "Confirmação de Reserva",
+"description": "E-mail enviado ao funcionário com a confirmação da reserva do veículo."
+},
+{
+"name": "Relatório de Vistoria do Veículo",
+"description": "Relatório preenchido pelo responsável pela frota com a vistoria do veículo após a devolução."
+},
+{
+"name": "Relatório de Ocorrências com Veículos",
+"description": "Relatório de ocorrências (acidentes, danos, etc.) com os veículos da frota."
+},
+{
+"name": "Registros de Manutenção dos Veículos",
+"description": "Registro das manutenções realizadas nos veículos da frota."
+}
+],
+"improvements": [
+{
+"name": "Automação do Processo de Aprovação",
+"description": "Implementar um sistema de aprovação automatizada, com base em regras predefinidas, para agilizar o processo de aprovação das solicitações."
+},
+{
+"name": "Integração com o Sistema de Rastreamento",
+"description": "Integrar o sistema de gestão de frota com o sistema de rastreamento de veículos, para acompanhar a localização dos veículos em tempo real e monitorar a utilização dos veículos."
+},
+{
+"name": "Sistema de Agendamento Online",
+"description": "Criar um sistema de agendamento online para que os funcionários possam solicitar e agendar a utilização dos veículos com mais autonomia."
+},
+{
+"name": "Portal de Informações",
+"description": "Criar um portal de informações para os funcionários com informações sobre a frota, normas de utilização dos veículos e outros recursos relevantes."
+},
+{
+"name": "Aplicativo Móvel",
+"description": "Desenvolver um aplicativo móvel para que os funcionários possam solicitar veículos, acompanhar o status das solicitações, receber notificações e outras funcionalidades relevantes."
+}
+],
+"objective": "Atender solicitações de veículos para uso por funcionários da empresa, garantindo a disponibilidade de veículos adequados para as necessidades de cada solicitação, de forma eficiente e segura.",
+"systems": [
+{
+"name": "Sistema de Gestão de Frota",
+"description": "Sistema online para gerenciar as solicitações de veículos, reservas, acompanhamento da utilização, manutenção e outras informações relevantes sobre a frota."
+},
+{
+"name": "Formulário Online de Solicitação de Veículo",
+"description": "Formulário digital disponível no sistema de gestão de frota para o funcionário preencher os dados da solicitação."
+},
+{
+"name": "Sistema de E-mail",
+"description": "Utilizado para enviar notificações aos funcionários sobre o status da solicitação, confirmações de reserva e outras informações relevantes."
+},
+{
+"name": "Aplicativo de Rastreamento de Veículos",
+"description": "Aplicativo que permite acompanhar a localização dos veículos em tempo real."
+},
+{
+"name": "Documentos de Identificação",
+"description": "RG e CNH do funcionário para retirada do veículo."
+}
+],
+"steps": [
+{
+"name": "Solicitação de Veículo",
+"description": "O funcionário preenche um formulário online com os dados da solicitação, incluindo data, hora, local de partida e destino, tipo de veículo necessário e justificativa.",
+"responsible": "Funcionário",
+"involved": [],
+"inputs": [
+"Formulário de solicitação preenchido com os dados da solicitação."
+],
+"outputs": [
+"Solicitação de veículo registrada no sistema."
+]
+},
+{
+"name": "Análise e Aprovação da Solicitação",
+"description": "O sistema automaticamente valida a solicitação, verificando se o funcionário possui autorização para solicitar veículo e se há disponibilidade do veículo solicitado na data e hora desejadas. Em caso de aprovação, a solicitação é encaminhada para o gestor do funcionário para aprovação final.",
+"responsible": "Sistema",
+"involved": [
+"Gestor do Funcionário"
+],
+"inputs": [
+"Solicitação de veículo registrada no sistema."
+],
+"outputs": [
+"Solicitação aprovada ou rejeitada, com justificativa."
+]
+},
+{
+"name": "Confirmação da Reserva",
+"description": "Após a aprovação do gestor, o sistema gera uma confirmação de reserva, informando o funcionário sobre o veículo reservado, data e hora da reserva, local de retirada e entrega do veículo, e instruções para a retirada do veículo.",
+"responsible": "Sistema",
+"involved": [
+"Funcionário"
+],
+"inputs": [
+"Solicitação aprovada."
+],
+"outputs": [
+"Confirmação de reserva enviada ao funcionário por e-mail."
+]
+},
+{
+"name": "Retirada do Veículo",
+"description": "O funcionário retira o veículo no local e horário agendados, apresentando o documento de identificação e a confirmação de reserva.",
+"responsible": "Funcionário",
+"involved": [],
+"inputs": [
+"Confirmação de reserva",
+"Documento de identificação do funcionário"
+],
+"outputs": [
+"Veículo liberado para o funcionário."
+]
+},
+{
+"name": "Utilização do Veículo",
+"description": "O funcionário utiliza o veículo para o fim solicitado, seguindo as normas de segurança e conduta da empresa.",
+"responsible": "Funcionário",
+"involved": [],
+"inputs": [
+"Veículo liberado."
+],
+"outputs": [
+"Veículo utilizado para o fim solicitado."
+]
+},
+{
+"name": "Devolução do Veículo",
+"description": "O funcionário devolve o veículo no local e horário agendados, realizando a vistoria do veículo com o responsável pela frota.",
+"responsible": "Funcionário",
+"involved": [
+"Responsável pela Frota"
+],
+"inputs": [
+"Veículo utilizado."
+],
+"outputs": [
+"Veículo devolvido, com vistoria realizada."
+]
+},
+{
+"name": "Encerramento da Solicitação",
+"description": "O sistema registra a devolução do veículo e encerra a solicitação, liberando o veículo para novas solicitações.",
+"responsible": "Sistema",
+"involved": [],
+"inputs": [
+"Veículo devolvido."
+],
+"outputs": [
+"Solicitação encerrada no sistema."
+]
+}
+]
+}
+}

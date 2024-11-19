@@ -2222,16 +2222,16 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #3688fc;
-  border-color: #3688fc; }
+  background: linear-gradient(45deg, #f0a443, #f06d45);
+  border-color: none; }
   .btn-primary:hover {
     color: #fff;
-    background-color: #1072fb;
-    border-color: #046afb; }
+    background-color: #f06d45;
+    border-color: none; }
   .btn-primary:focus, .btn-primary.focus {
     color: #fff;
-    background-color: #1072fb;
-    border-color: #046afb;
+    background-color: #f06d45;
+    border-color: #f06d45;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(84, 154, 252, 0.5);
             box-shadow: 0 0 0 0.2rem rgba(84, 154, 252, 0.5); }
   .btn-primary.disabled, .btn-primary:disabled {
